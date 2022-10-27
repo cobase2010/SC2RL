@@ -10,7 +10,7 @@ from wandb.integration.sb3 import WandbCallback
 import wandb
 
 
-LOAD_MODEL = "models/1647915989/1647915989.zip"
+LOAD_MODEL = "models/1647915989/2880000.zip"
 # Environment:
 env = Sc2Env()
 
@@ -24,7 +24,7 @@ logdir = f"logs/{model_name}/"
 
 
 conf_dict = {"Model": "load-v16s",
-             "Machine": "Puget/Desktop/v18/2",
+             "Machine": "Macbook",
              "policy":"MlpPolicy",
              "model_save_name": model_name,
              "load_model": LOAD_MODEL
@@ -32,7 +32,7 @@ conf_dict = {"Model": "load-v16s",
 
 run = wandb.init(
     project=f'SC2RLv6',
-    entity="sentdex",
+    entity="cobase2010",
     config=conf_dict,
     sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
     save_code=True,  # save source code
