@@ -11,7 +11,7 @@ import numpy as np
 import sys
 import pickle
 import time
-import datetime
+from datetime import datetime
 
 
 SAVE_REPLAY = True
