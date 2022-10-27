@@ -12,3 +12,4 @@ wandb/*
 __pycache__/*
 logs/*
 models/*
+models.zip?dl=0
