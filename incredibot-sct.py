@@ -15,6 +15,7 @@ import datetime
 
 
 SAVE_REPLAY = True
+SHOW_MAP = False
 
 total_steps = 10000 
 steps_for_pun = np.linspace(0, 1, total_steps)
@@ -284,9 +285,11 @@ class IncrediBot(BotAI): # inhereits from BotAI (part of BurnySC2)
 
         # show map with opencv, resized to be larger:
         # horizontal flip:
-
-        cv2.imshow('map',cv2.flip(cv2.resize(map, None, fx=4, fy=4, interpolation=cv2.INTER_NEAREST), 0))
-        cv2.waitKey(1)
+        if SHOW_MAP:
+            cv2.imshow('map',cv2.flip(cv2.resize(map, None, fx=4, fy=4, interpolation=cv2.INTER_NEAREST), 0))
+            cv2.waitKey(1)
+        else:
+            cv2.flip(cv2.resize(map, None, fx=4, fy=4, interpolation=cv2.INTER_NEAREST), 0)
 
         if SAVE_REPLAY:
             # save map image into "replays dir"
@@ -325,10 +328,10 @@ class IncrediBot(BotAI): # inhereits from BotAI (part of BurnySC2)
 
 
 result = run_game(  # run_game is a function that runs the game.
-    # maps.get("2000AtmospheresAIE"), # the map we are playing on
-    maps.get("AbyssalReefLE"), # the map we are playing on
+    maps.get("2000AtmospheresAIE"), # the map we are playing on
+    # maps.get("AbyssalReefLE"), # the map we are playing on
     [Bot(Race.Protoss, IncrediBot()), # runs our coded bot, protoss race, and we pass our bot object 
-     Computer(Race.Terran, Difficulty.Hard)], # runs a pre-made computer agent, zerg race, with a hard difficulty.
+     Computer(Race.Zerg, Difficulty.Hard)], # runs a pre-made computer agent, zerg race, with a hard difficulty.
     realtime=False, # When set to True, the agent is limited in how long each step can take to process.
 )
 
@@ -349,7 +352,8 @@ data = {"state": map, "reward": rwd, "action": None, "done": True}  # empty acti
 with open('state_rwd_action.pkl', 'wb') as f:
     pickle.dump(data, f)
 
-cv2.destroyAllWindows()
-cv2.waitKey(1)
+if SHOW_MAP:
+    cv2.destroyAllWindows()
+    cv2.waitKey(1)
 time.sleep(3)
 sys.exit()

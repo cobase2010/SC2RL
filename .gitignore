@@ -9,3 +9,6 @@ wandb/run-20221027_005011-nl9j58wj/run-nl9j58wj.wandb
 *.wandb
 wandb/run-20221027_005011-nl9j58wj/files/events.out.tfevents.1666857017.macbook-pro-3.lan.65594.0
 wandb/*
+__pycache__/*
+logs/*
+models/*
