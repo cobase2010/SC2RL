@@ -21,7 +21,9 @@ total_steps = 10000
 steps_for_pun = np.linspace(0, 1, total_steps)
 step_punishment = ((np.exp(steps_for_pun**3)/10) - 0.1)*10
 
-
+# Todo:
+# 1. Scout designated locations on the map, not just enemy base, if enemy or building found, remember the location
+# 2. For attach force, attack all know enemy locations one by one
 
 class IncrediBot(BotAI): # inhereits from BotAI (part of BurnySC2)
     async def on_step(self, iteration: int): # on_step is a method that is called every step of the game.
